@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,32 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String
+  senha     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  horarios  Horarios[] // Adiciona um campo para relacionamento com a tabela "Horarios"
+  barbeiro Barbeiro []
+}
+
+model Horarios {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @default(now())
+  cliente   Cliente? @relation(fields: [clienteId], references: [id]) // Define o relacionamento com a tabela "Cliente"
+  clienteId Int?     // Adiciona a chave estrangeira referenciando o "id" da tabela "Cliente"
+  disponivel Boolean
+}
+
+model Barbeiro {
+  id        Int      @id @default(autoincrement())
+  nome String
+  cliente   Cliente? @relation(fields: [clienteId], references: [id])
+  clienteId Int?   
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

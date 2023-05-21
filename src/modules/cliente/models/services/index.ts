@@ -1,0 +1,5 @@
+export * from './CreateCliente'
+export * from './DeleteCliente'
+export * from './GetAllCliente'
+export * from './GetClienteById'
+export * from './UpdateCliente'
