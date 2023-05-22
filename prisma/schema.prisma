@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Cliente {
-  id        Int      @id @default(autoincrement())
+  id        Int      @id @default(autoincrement()) //alterar para UUID
   nome      String
   email     String
   senha     String
@@ -19,7 +19,7 @@ model Cliente {
 }
 
 model Horarios {
-  id        Int      @id @default(autoincrement())
+  id        Int      @id @default(autoincrement()) //alterar para UUID
   date      DateTime @default(now())
   cliente   Cliente? @relation(fields: [clienteId], references: [id]) // Define o relacionamento com a tabela "Cliente"
   clienteId Int?     // Adiciona a chave estrangeira referenciando o "id" da tabela "Cliente"
@@ -27,7 +27,7 @@ model Horarios {
 }
 
 model Barbeiro {
-  id        Int      @id @default(autoincrement())
+  id        Int      @id @default(autoincrement()) //alterar para UUID
   nome String
   cliente   Cliente? @relation(fields: [clienteId], references: [id])
   clienteId Int?   
