@@ -2,7 +2,6 @@
     "version": 2,
     "builds": [
         {
-          "version": "src/shared/server.ts",
           "use": "@vercel/node"
         }
     ],
